@@ -1,4 +1,14 @@
-const bookReducer = (state=[],action) => {
+
+import { getBookStore } from "../services/bookService";
+
+var books=[];
+const fetchApi = async () => {
+    const result = await getBookStore();
+    books=result.reverse()
+};
+fetchApi();
+
+const bookReducer = (state=books,action) => {
     let newState =  [...state];
     switch (action.type) {
         case "ADD_TO_STORE":

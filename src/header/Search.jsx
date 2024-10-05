@@ -8,6 +8,8 @@ function SearchBook() {
     const [data, setData] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
     const [visible, setVisible] = useState(true);
+    
+    //get list product
     useEffect(() => {
         const fetchApi = async () => {
             const result = await getProductList();
@@ -15,14 +17,18 @@ function SearchBook() {
         };
         fetchApi();
     }, []);
-    const titles = data.map((item) => item.title);
+
     const handleSearch = (value) => {
-        const filteredData = titles.filter((item) => item.toLowerCase().includes(value.toLowerCase()));
+        const filteredData = data.filter((item) => item.title.toLowerCase().includes(value.toLowerCase()));
         setSearchResults(filteredData);
     };
+
     
+
     const handleBlur = () => {
-       setVisible(false)
+        setTimeout(() => {
+          setVisible(false);
+        }, 300); // delay để đảm bảo onClick của kết quả tìm kiếm được kích hoạt trước
       };
 
     const handleFocus = () => {
@@ -45,12 +51,15 @@ function SearchBook() {
                 
             />
             {visible && (
-                <ul className="absolute w-full max-h-32 bg-slate-100 overflow-auto text-gray-800 rounded"
+                <ul className="absolute w-full max-h-32 bg-slate-100 overflow-auto text-gray-800 rounded shadow-md"
                     style={{}}
                     >
-                    {searchResults.map((result, index) => (
+                    {searchResults.map((item, index) => (
                         <li className='p-2 w-full' key={index}>
-                            <Link className=' flex w-full p-2 hover:bg-slate-200' to={'/detail'}>{result}</Link>
+                            <Link 
+                            className=' flex w-full p-2 hover:bg-slate-200'  
+                            to={'/books/'+item.id}
+                            >{item.title}</Link>
                         </li>
                     ))}
                 </ul>   

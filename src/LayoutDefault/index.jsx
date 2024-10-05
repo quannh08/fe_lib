@@ -12,8 +12,8 @@ function LayoutDefault() {
                 <Outlet/>
             </main>
         
-            <footer className="w-full h-[60px] flex  bg-cyan-800 self-end">
-                <div className="w-full h-full flex text-center justify-center items-center px-6">@pageBTL...</div>
+            <footer className="w-full h-full bg-cyan-800 flex mt-auto bottom-0">
+                <div className="w-full h-[80px] flex text-center mt-auto justify-center items-center px-6">@pageBTL...</div>
             </footer>
         </div>
      );

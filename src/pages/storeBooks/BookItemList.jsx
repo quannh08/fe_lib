@@ -9,11 +9,10 @@ function BookItemList() {
     useEffect(() => {
         const fetchApi = async () => {
             const result = await getBookStore();
-            setData(result);
+            setData(result.reverse());
         };
         fetchApi();
     }, []);
-    console.log(data)
     return (
         <div className=" w-full mt-10 flex flex-wrap grid grid-cols-4 gap-7 px-6">
             {data.map((item) => (
