@@ -46,7 +46,7 @@ function Book(props) {
                 <h4 className='font-semibold text-base'>Thể Loại: <strong>{item.category}</strong></h4>
                 <p>Tác Giả:<strong>xxxxxx</strong></p>
             </div>
-            <div className="w-full h-full flex justify-center items-center bottom-0">
+            {/* <div className="w-full h-full flex justify-center items-center bottom-0">
                 <Button
                     type="primary"
                     size="large"
@@ -55,7 +55,7 @@ function Book(props) {
                 >
                     Thêm vào đọc sau
                 </Button>
-            </div>
+            </div> */}
         </div>
     );
 }

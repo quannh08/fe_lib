@@ -1,8 +1,9 @@
 import {combineReducers} from "redux";
-import bookReducer from "./books";
+
+import loginReducer from "./login";
 
 const allReducer = combineReducers({
-    bookReducer
+    loginReducer
 })
 
 export default allReducer

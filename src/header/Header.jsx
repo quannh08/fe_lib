@@ -3,8 +3,13 @@ import { Button, Flex } from 'antd';
 
 import SearchBook from './Search';
 import SelectCategory from './SelectCategory';
+import { getCookie } from '../helper/cookie';
+import { useSelector } from 'react-redux';
 
 function Header() {
+    const token = getCookie("token");
+    const isLogin = useSelector(state=> state.loginReducer)
+    console.log(isLogin)
 
     const navLinkActive = (e) => {
         return e.isActive ? "bg-cyan-800 h-full flex justify-center items-center px-2" : "h-full flex justify-center items-center px-2 hover:bg-cyan-800";
@@ -24,19 +29,26 @@ function Header() {
                         <li className='flex justify-center items-center h-full hover:bg-cyan-800'>
                             <SelectCategory/>
                         </li>
-                        <li className='flex justify-center items-center h-full'>
+                        {token && <li className='flex justify-center items-center h-full'>
                             <NavLink className={navLinkActive} to={"/bookstore"}> Đang đọc </NavLink>
-                        </li>
+                        </li>}
                     </ul>
                 {/* search */}
-                    <SearchBook/>
+                    {token&&<SearchBook/>}
                 </div>
             
                 {/* button */}
                 <div className=' flex right-0 w-55 h-full items-center justify-center px-3'>
                     <Flex gap="small" nowrap>
-                        <Button type="primary" className='bg-cyan-700 hover:!bg-cyan-600'>Đăng nhập</Button>
-                        <Button className='bg-gray-300 border-gray-300'>Đăng kí</Button>
+                        {token?(<Link to='/logout'>
+                            <Button type="primary" className='bg-cyan-700 hover:!bg-cyan-600'>Đăng xuất</Button>
+                        </Link>)
+                        :
+                       (<>
+                            <Link to='/login'><Button type="primary" className='bg-cyan-700 hover:!bg-cyan-600'>Đăng nhập</Button></Link>
+                            <Link to='/register'><Button className='bg-gray-300 border-gray-300'>Đăng kí</Button></Link>
+                        </>)}
+                        
                     </Flex>
                 </div>
             </div>

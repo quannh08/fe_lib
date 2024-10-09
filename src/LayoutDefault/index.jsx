@@ -8,7 +8,7 @@ function LayoutDefault() {
                 <Header/>
             </header>
             
-            <main className="pt-32 flex-grow">
+            <main className="pt-32 flex-grow min-h-screen">
                 <Outlet/>
             </main>
         

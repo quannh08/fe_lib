@@ -1,12 +1,15 @@
 import { Button } from 'antd';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getBookDetail } from '../../services/bookService';
 import { createBookStore,getBookStore } from '../../services/bookService';
 import GoBack from '../../component/GoBack';
+import { getCookie } from '../../helper/cookie';
 
 
 function DetailBook() {
+    const token = getCookie("token")
+    const navigate = useNavigate();
     const params = useParams();
     const [content, setContent] = useState({});
     const[data,setData] = useState([])
@@ -25,6 +28,15 @@ function DetailBook() {
         };
         fetchApi();
     }, []);
+
+    const handleClick=()=>{
+        if(token){
+            handleAddToStore();
+        }
+        else{
+            navigate('/login')
+        }
+    }
 
     const handleAddToStore = async()=>{
         if( data.some(itemCart => itemCart.id === content.id)){
@@ -65,7 +77,7 @@ function DetailBook() {
                         type="primary"
                         size="large"
                         className="w-40 bg-cyan-900 self-end hover:!bg-cyan-700"
-                        onClick={handleAddToStore}
+                        onClick={handleClick}
                     >
                         Đọc sách
                     </Button>

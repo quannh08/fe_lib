@@ -1,9 +1,22 @@
-import axios from "axios";
+// import axios from "axios";
+import axios from "../services/customize_axios";
 
 const API_DOMAIN = "http://localhost:3002/";
 
 export const get = async (path) => {
   const response = await axios.get(API_DOMAIN + path);
+  const result = response.data;
+  return result;
+};
+//fake api login
+export const getUser = async (options) => {
+  const response = await axios.post("https://reqres.in/api/login" , options);
+  const result = response.data;
+  return result;
+};
+
+export const registerUser = async (options) => {
+  const response = await axios.post("https://reqres.in/api/register" , options);
   const result = response.data;
   return result;
 };
@@ -21,7 +34,7 @@ export const del = async (path) => {
   return result;
 };
 
-export const path = async (path, options) => {
+export const patch = async (path, options) => {
   const response = await fetch(API_DOMAIN + path, {
     method: "PATCH",
     headers: {
