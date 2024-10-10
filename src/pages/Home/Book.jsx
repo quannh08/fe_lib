@@ -18,19 +18,19 @@ function Book(props) {
         fetchApi();
     }, []);
     
-    const handleAddToStore = async()=>{
-        if( data.some(itemCart => itemCart.id === item.id)){
-            alert("It in store")
-        }
-        else{
-            dispatch(addToStore(item.id, item));
-            const result = await createBookStore(item)
-            if(result){
-                alert("success!")
-            }
-        }
+    // const handleAddToStore = async()=>{
+    //     if( data.some(itemCart => itemCart.id === item.id)){
+    //         alert("It in store")
+    //     }
+    //     else{
+    //         dispatch(addToStore(item.id, item));
+    //         const result = await createBookStore(item)
+    //         if(result){
+    //             alert("success!")
+    //         }
+    //     }
         
-      }
+    //   }
 
     return (
         <div className="border-2 border-solid border-gray-400 mb-8 p-3 shadow-md shadow-slate-400 bg-white flex flex-col hover:scale-105" 
