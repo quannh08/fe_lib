@@ -20,12 +20,12 @@ function Login() {
         const email = e.target[0].value;
         const pass = e.target[1].value;
         setLoading(true);
-        const response = await login('eve.holt@reqres.in', pass);
+        const response = await login(email, pass);
         setLoading(false);
         if (response && response.token) {
             setCookie('token', response.token, 1);
+            setCookie('username', response.username, 1);
             dispatch(checkLogin(true));
-            // toast.success("Đăng nhập thành công")
             navigate('/');
         } else {
             console.log(response);
@@ -45,7 +45,7 @@ function Login() {
                         Login
                     </div>
                     <div className="flex flex-col p-4 gap-3">
-                        <div className="text-base text-slate-700 font-semibold"> Username</div>
+                        <div className="text-base text-slate-700 font-semibold"> Email</div>
                         <div className="w-full">
                             <input
                                 className="w-full p-2 rounded focus:outline-slate-200 bg-slate-200"

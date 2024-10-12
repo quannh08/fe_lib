@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Button, Flex } from 'antd';
+import { MdOutlineAccountCircle } from 'react-icons/md';
 
 import SearchBook from './Search';
 import SelectCategory from './SelectCategory';
@@ -8,6 +9,7 @@ import { useSelector } from 'react-redux';
 
 function Header() {
     const token = getCookie('token');
+    const username = getCookie('username');
     const isLogin = useSelector((state) => state.loginReducer);
     console.log(isLogin);
 
@@ -53,11 +55,17 @@ function Header() {
                 <div className=" flex right-0 w-55 h-full items-center justify-center px-3">
                     <Flex gap="small" nowrap>
                         {token ? (
-                            <Link to="/logout">
-                                <Button type="primary" className="bg-cyan-700 hover:!bg-cyan-600">
-                                    Đăng xuất
-                                </Button>
-                            </Link>
+                            <div className="flex flex-row gap-3">
+                                <div className="text-white flex items-center justify-center">
+                                    <MdOutlineAccountCircle />
+                                    &nbsp; {username}
+                                </div>
+                                <Link to="/logout">
+                                    <Button type="primary" className="bg-cyan-700 hover:!bg-cyan-600">
+                                        Đăng xuất
+                                    </Button>
+                                </Link>
+                            </div>
                         ) : (
                             <>
                                 <Link to="/login">

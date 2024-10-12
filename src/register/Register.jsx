@@ -4,12 +4,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { checkLogin } from '../actions/loginAction';
+
 function Register() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     // const userNameRef = useRef('')
     // const passwordRef = useRef('')
     const handleSubmit = async (e) => {
@@ -19,20 +17,22 @@ function Register() {
         const email = e.target[1].value;
         const pass = e.target[2].value;
         const pass2 = e.target[3].value;
-
-        setLoading(true);
-        const response = await register('eve.holt@reqres.in', pass);
-        setLoading(false);
-        if (response && response.token) {
-            dispatch(checkLogin(true));
-            setTimeout(function () {
-                toast.success('đăng kí thành công');
-            }, 1000);
-
-            navigate('/login');
+        if (pass != pass2) {
+            toast.error('Mật khẩu không trùng khớp!');
         } else {
-            console.log(response);
-            toast.error('Tài khoản đã tồn tại');
+            setLoading(true);
+            const response = await register(username, email, pass);
+            setLoading(false);
+            if (response) {
+                setTimeout(function () {
+                    toast.success('đăng kí thành công');
+                });
+
+                navigate('/login');
+            } else {
+                console.log(response);
+                toast.error('Tài khoản đã tồn tại');
+            }
         }
     };
     return (
