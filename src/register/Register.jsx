@@ -22,6 +22,7 @@ function Register() {
         } else {
             setLoading(true);
             const response = await register(username, email, pass);
+            console.log(response);
             setLoading(false);
             if (response) {
                 setTimeout(function () {
@@ -31,7 +32,7 @@ function Register() {
                 navigate('/login');
             } else {
                 console.log(response);
-                toast.error('Tài khoản đã tồn tại');
+                toast.error('Email đã tồn tại');
             }
         }
     };

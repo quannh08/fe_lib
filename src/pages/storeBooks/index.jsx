@@ -1,12 +1,14 @@
 // import { useDispatch, useSelector } from "react-redux";
-import BookItemList from "./BookItemList";
+import BookItemList from './BookItemList';
 // import { deleteAll } from "../../actions/addBook";
-import { useState,useEffect } from "react";
-import { getBookStore } from "../../services/bookService";
-import GoBack from "../../component/GoBack";
+import { useState, useEffect } from 'react';
+import { getBookStore } from '../../services/bookService';
+import GoBack from '../../component/GoBack';
+import { useSelector } from 'react-redux';
 function BookStore() {
     const [data, setData] = useState([]);
-
+    const reload = useSelector((state) => state.delStore);
+    console.log(reload);
     useEffect(() => {
         const fetchApi = async () => {
             const result = await getBookStore();
@@ -19,10 +21,10 @@ function BookStore() {
     //     dispatch(deleteAll())
     // }
 
-    return ( 
+    return (
         <div>
-            <div className='px-8 '>
-                    <GoBack/>
+            <div className="px-8 ">
+                <GoBack />
             </div>
             <div className="m-8 min-h-full">
                 <div className="flex w-full justify-between ">
@@ -32,13 +34,15 @@ function BookStore() {
                 <div>
                     {data.length > 0 ? (
                         <>
-                            <BookItemList/>
-                        </>):(
-                        <>Empty Store</>)}
+                            <BookItemList />
+                        </>
+                    ) : (
+                        <>Empty Store</>
+                    )}
                 </div>
             </div>
         </div>
-     );
+    );
 }
 
 export default BookStore;

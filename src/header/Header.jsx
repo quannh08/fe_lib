@@ -6,7 +6,7 @@ import SearchBook from './Search';
 import SelectCategory from './SelectCategory';
 import { getCookie } from '../helper/cookie';
 import { useSelector } from 'react-redux';
-
+import logo from '../assets/img/btl.png';
 function Header() {
     const token = getCookie('token');
     const username = getCookie('username');
@@ -23,8 +23,10 @@ function Header() {
         <div className="w-full h-20 top-0 shadow-lg bg-cyan-900">
             <div className="w-full h-full flex items-center justify-between px-5">
                 {/* logo */}
-                <Link className="p-3 text-white" to={'/'}>
-                    BTL
+                <Link className="p-2 text-white" to={'/'}>
+                    <div className="h-11 w-13 flex justify-center items-center">
+                        <img src={logo} alt="LOGO" className="w-full h-full" />
+                    </div>
                 </Link>
                 {/* menu */}
                 <div className="flex h-full items-center justify-between px-5 gap-5 text-white">

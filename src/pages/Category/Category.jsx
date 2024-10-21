@@ -1,10 +1,10 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useParams } from 'react-router-dom';
 
-import { getProductList } from "../../services/bookService";
-import BookItem from "../storeBooks/BookItem";
-import GoBack from "../../component/GoBack";
+import { getProductList } from '../../services/bookService';
+import BookItem from '../storeBooks/BookItemStore';
+import GoBack from '../../component/GoBack';
 
 function Category() {
     const [data, setData] = useState([]);
@@ -21,23 +21,23 @@ function Category() {
         fetchApi();
     }, []);
 
-    const filterData = data.filter((item)=>item.category===params.item)
+    const filterData = data.filter((item) => item.category === params.item);
     const startIndex = currentPage * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentItems = filterData.slice(startIndex, endIndex);
-    
+
     const handlePageClick = (data) => {
         setCurrentPage(data.selected);
     };
 
-    // const pageCount = filterData.length > itemsPerPage 
+    // const pageCount = filterData.length > itemsPerPage
     // ? Math.ceil(filterData.length / itemsPerPage)
     // : 1;
-    
-    return ( 
+
+    return (
         <div>
-            <div className='px-8 '>
-                    <GoBack/>
+            <div className="px-8 ">
+                <GoBack />
             </div>
             <div className="m-8 min-h-full">
                 <div className="flex w-full justify-between ">
@@ -50,7 +50,7 @@ function Category() {
                         ))}
                     </div>
 
-                      {/* Component phân trang */}
+                    {/* Component phân trang */}
                     <div className="flex items-center justify-center">
                         <ReactPaginate
                             previousLabel={'previous'}
@@ -70,7 +70,7 @@ function Category() {
                 </div>
             </div>
         </div>
-     );
+    );
 }
 
 export default Category;

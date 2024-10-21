@@ -15,7 +15,7 @@ export const getUser = async (options) => {
 };
 
 export const registerUser = async (options) => {
-    const response = await axios.post('http://loccalhost:8000/api/register', options);
+    const response = await axios.post('http://localhost:8000/api/register', options);
     console.log(response);
     const result = response.data;
     return result;
@@ -28,7 +28,7 @@ export const post = async (path, options) => {
 };
 
 export const del = async (path) => {
-    const response = await axios.delete(API_DOMAIN + path, {});
+    const response = await axios.delete(API_DOMAIN + path);
     const result = await response.data;
     return result;
 };
