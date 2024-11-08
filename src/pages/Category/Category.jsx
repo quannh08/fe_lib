@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useParams } from 'react-router-dom';
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 
 import { getProductList } from '../../services/bookService';
-import BookItem from '../storeBooks/BookItemStore';
+// import BookItem from '../storeBooks/BookItemStore';
 import GoBack from '../../component/GoBack';
+import Book from '../../component/Book/Book';
 
 function Category() {
     const [data, setData] = useState([]);
@@ -46,15 +48,15 @@ function Category() {
                 <div className="w-full flex flex-col ">
                     <div className="flex w-full flex-wrap grid grid-cols-4 gap-8 px-6 py-10">
                         {currentItems.map((item) => (
-                            <BookItem item={item} key={item.id} />
+                            <Book item={item} key={item.id} />
                         ))}
                     </div>
 
                     {/* Component phân trang */}
                     <div className="flex items-center justify-center">
                         <ReactPaginate
-                            previousLabel={'previous'}
-                            nextLabel={'next'}
+                            previousLabel={<span><FaAngleDoubleLeft /></span>}
+                            nextLabel={<span><FaAngleDoubleRight /></span>}
                             breakLabel={'...'}
                             pageCount={Math.ceil(filterData.length / itemsPerPage)}
                             marginPagesDisplayed={2}

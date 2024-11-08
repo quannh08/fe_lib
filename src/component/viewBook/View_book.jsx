@@ -24,14 +24,14 @@ const PDFViewer = () => {
   }, [params.id]);
   
   return (
-      <div className='w-full h-full top-8 flex justify-center items-center mb-9'>
+      <div className='w-full h-full flex justify-center mb-9 mt-[-48px]'>
           <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.js">
-              <div style={{ height: '800px', width:'70%', display:'flex', justifyContent:'center'}}>
+              <div style={{ height: '750px', width:'100%', display:'flex', justifyContent:'center'}}>
                   {!loading && bookDetail.pdf_url ? (
                       <Viewer
                           fileUrl={bookDetail.pdf_url}
                           plugins={[defaultLayoutPluginInstance]}
-                          defaultScale="PageWidth" 
+                          defaultScale={1.1} 
                       />
                   ) : (
                       <p>Loading PDF...</p>
