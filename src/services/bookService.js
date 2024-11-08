@@ -1,30 +1,39 @@
-import { del, get, post } from '../utils/request';
+import { del, get, getStore, post } from '../utils/request';
 
 export const getProductList = async () => {
-    const result = await get('products');
+    const result = await get('books/');
     return result;
 };
-export const getCategory = async () => {
-    const result = await get('category');
-    return result;
-};
+// export const getCategory = async () => {
+//     const result = await get('category');
+//     return result;
+// };
 
 export const getBookDetail = async (id) => {
-    const result = await get(`products/${id}`);
+    const result = await get(`books/${id}`);
+    return result;
+};
+//AUthor
+export const getAuthor = async () => {
+    const result = await get('authors/');
+    return result;
+};
+export const getAuthorById = async (id) => {
+    const result = await get(`authors/${id}`);
     return result;
 };
 
 export const createBookStore = async (options) => {
-    const result = await post('store', options);
+    const result = await post('read-history/', options);
     return result;
 };
 
 export const getBookStore = async () => {
-    const result = await get('store');
+    const result = await getStore('read-history/');
     return result;
 };
 
-export const delBookStore = async (id) => {
-    const result = await del(`store/${id}`);
-    return result;
-};
+// export const delBookStore = async (id) => {
+//     const result = await del(`store/${id}`);
+//     return result;
+// };

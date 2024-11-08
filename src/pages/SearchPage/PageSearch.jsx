@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getProductList } from '../../services/bookService';
 import { useParams } from 'react-router-dom';
-import Book from '../Home/Book';
+import Book from '../../component/Book/Book';
 import { useSelector } from 'react-redux';
 
 function PageSearch() {
@@ -9,17 +9,17 @@ function PageSearch() {
     const [searchResults, setSearchResults] = useState([]);
     const search = useSelector((state) => state.searchReducer);
     // console.log(search);
+    console.log(params.query.toLowerCase())
     useEffect(() => {
         const fetchApi = async () => {
             const result = await getProductList();
             const filteredData = result.filter((item) => item.title.toLowerCase().includes(params.query.toLowerCase()));
+            console.log(filteredData);
             setSearchResults(filteredData);
         };
         fetchApi();
     }, [search]);
 
-    console.log();
-    console.log(searchResults);
     return (
         <div className="w-full h-full flex flex-col">
             {searchResults.length ? (

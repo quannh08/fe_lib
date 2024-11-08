@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import { delBookStore } from '../../services/bookService';
 import { Link } from 'react-router-dom';
 import { delBook } from '../../actions/delBookStore';
 import { toast, ToastContainer } from 'react-toastify';
@@ -21,7 +20,7 @@ function BookItem(props) {
         >
             <ToastContainer />
             <Link to={'/books/' + item.id}>
-                <img className="w-full aspect-[4/3] object-cover" src={item.thumbnail} alt={item.title} />
+                <img className="w-full aspect-[4/3] object-cover" src={item.image} alt={item.title} />
             </Link>
             <hr className=""></hr>
             <div className="my-3">

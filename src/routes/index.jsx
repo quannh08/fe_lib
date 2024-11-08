@@ -1,6 +1,8 @@
+import PDFViewer from '../component/viewBook/View_book';
 import LayoutDefault from '../LayoutDefault';
 import Login from '../Login/Login';
 import Logout from '../Logout/Logout';
+import Author from '../pages/authors/Authors';
 import Category from '../pages/Category/Category';
 import DetailBook from '../pages/DetailBook/DetailBook';
 import Home from '../pages/Home';
@@ -44,6 +46,14 @@ export const routes = [
             {
                 path: '/search/:query',
                 element: <PageSearch />,
+            },
+            {
+                path: '/viewbook/:id',
+                element: <PDFViewer />,
+            },
+            {
+                path: '/author/:id',
+                element: <Author />,
             },
         ],
     },

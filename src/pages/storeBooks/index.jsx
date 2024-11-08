@@ -34,7 +34,7 @@ function BookStore() {
                 <div>
                     {data.length > 0 ? (
                         <>
-                            <BookItemList />
+                            <BookItemList data={data} />
                         </>
                     ) : (
                         <>Empty Store</>

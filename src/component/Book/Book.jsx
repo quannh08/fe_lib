@@ -1,22 +1,28 @@
-import { Button } from 'antd';
-import { addToStore } from '../../actions/addBook';
-import { useDispatch } from 'react-redux';
-import { createBookStore, getBookStore } from '../../services/bookService';
+// import { addToStore } from '../../actions/addBook';
+// import { useDispatch } from 'react-redux';
+import { createBookStore, getAuthor } from '../../services/bookService';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function Book(props) {
     const { item } = props;
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchApi = async () => {
-            const result = await getBookStore();
+            const result = await getAuthor();
             setData(result);
         };
         fetchApi();
     }, []);
+
+    var name_author = null;
+    data.forEach(function (itemAuthor) {
+        if (item.authors === itemAuthor.id) {
+            name_author = itemAuthor.name;
+        }
+    });
 
     // const handleAddToStore = async()=>{
     //     if( data.some(itemCart => itemCart.id === item.id)){
@@ -38,7 +44,7 @@ function Book(props) {
             key={item.id}
         >
             <Link to={'/books/' + item.id}>
-                <img className="w-full aspect-[4/3] object-cover" src={item.thumbnail} alt={item.title} />
+                <img className="w-full aspect-[4/3] object-cover" src={item.image} alt={item.title} />
             </Link>
             <hr className=""></hr>
             <div className="my-3">
@@ -46,11 +52,12 @@ function Book(props) {
                     <h2 className="text-lg font-bold">{item.title}</h2>
                 </Link>
                 <h4 className="font-semibold text-base">
-                    Thể Loại: <strong>{item.category}</strong>
+                    Thể Loại: {item.category}
                 </h4>
-                <p>
-                    Tác Giả:<strong>xxxxxx</strong>
-                </p>
+                <h4 className="font-semibold text-base">
+                    Tác Giả: {name_author}
+                </h4>
+                
             </div>
             {/* <div className="w-full h-full flex justify-center items-center bottom-0">
                 <Button

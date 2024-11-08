@@ -41,7 +41,7 @@ function Category() {
             </div>
             <div className="m-8 min-h-full">
                 <div className="flex w-full justify-between ">
-                    <h2 className="w-full font-bold text-xl ml-auto">Sách đang đọc</h2>
+                    <h2 className="w-full font-bold text-xl ml-auto">{params.item}</h2>
                 </div>
                 <div className="w-full flex flex-col ">
                     <div className="flex w-full flex-wrap grid grid-cols-4 gap-8 px-6 py-10">

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
 import { getProductList } from '../../services/bookService';
-import Book from './Book';
+import Book from '../../component/Book/Book';
 
 function ListBook() {
     const itemsPerPage = 8;
@@ -25,7 +25,6 @@ function ListBook() {
         };
         fetchApi();
     }, []);
-    
 
     return (
         <div className="w-full flex flex-col ">

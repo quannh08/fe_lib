@@ -1,6 +1,8 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Button, Flex } from 'antd';
 import { MdOutlineAccountCircle } from 'react-icons/md';
+import { FiLogOut } from "react-icons/fi";
+import { Dropdown, Space } from 'antd';
 
 import SearchBook from './Search';
 import SelectCategory from './SelectCategory';
@@ -18,6 +20,13 @@ function Header() {
             ? 'bg-cyan-800 h-full flex justify-center items-center px-2'
             : 'h-full flex justify-center items-center px-2 hover:bg-cyan-800';
     };
+
+    const items = [
+        {
+            label: <Link to="/logout"><span className='flex items-center justify-center'>Đăng xuất &nbsp;<FiLogOut /></span></Link>,
+            key: '0',
+        },
+    ];
 
     return (
         <div className="w-full h-20 top-0 shadow-lg bg-cyan-900">
@@ -58,15 +67,20 @@ function Header() {
                     <Flex gap="small" nowrap>
                         {token ? (
                             <div className="flex flex-row gap-3">
-                                <div className="text-white flex items-center justify-center">
-                                    <MdOutlineAccountCircle />
-                                    &nbsp; {username}
-                                </div>
-                                <Link to="/logout">
-                                    <Button type="primary" className="bg-cyan-700 hover:!bg-cyan-600">
-                                        Đăng xuất
-                                    </Button>
-                                </Link>
+                                <Dropdown
+                                    menu={{
+                                        items,
+                                    }}
+                                >
+                                    <a onClick={(e) => e.preventDefault()}>
+                                        <Space>
+                                            <div className="text-white flex items-center justify-center mr-10 ">
+                                                <MdOutlineAccountCircle />
+                                                &nbsp; {username}
+                                            </div>
+                                        </Space>
+                                    </a>
+                                </Dropdown>
                             </div>
                         ) : (
                             <>
