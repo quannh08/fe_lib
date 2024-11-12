@@ -54,9 +54,10 @@ function Category() {
 
                     {/* Component phân trang */}
                     <div className="flex items-center justify-center">
-                        <ReactPaginate
-                            previousLabel={<span><FaAngleDoubleLeft /></span>}
-                            nextLabel={<span><FaAngleDoubleRight /></span>}
+                        <ReactPaginate 
+                            className='flex items-center justify-center gap-2'
+                            previousLabel={<span className='flex justify-center items-center'><FaAngleDoubleLeft /></span>}
+                            nextLabel={<span className='flex justify-center items-center'><FaAngleDoubleRight /></span>}
                             breakLabel={'...'}
                             pageCount={Math.ceil(filterData.length / itemsPerPage)}
                             marginPagesDisplayed={2}

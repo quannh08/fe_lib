@@ -23,8 +23,9 @@ function Header() {
 
     const items = [
         {
-            label: <Link to="/logout"><span className='flex items-center justify-center'>Đăng xuất &nbsp;<FiLogOut /></span></Link>,
-            key: '0',
+            label: <Link to="/logout"><span className='flex items-center justify-center '>Đăng xuất &nbsp;</span></Link>,
+            key: 'logout',
+            icon:<FiLogOut />
         },
     ];
 
@@ -72,14 +73,11 @@ function Header() {
                                         items,
                                     }}
                                 >
-                                    <a onClick={(e) => e.preventDefault()}>
-                                        <Space>
-                                            <div className="text-white flex items-center justify-center mr-10 ">
-                                                <MdOutlineAccountCircle />
-                                                &nbsp; {username}
-                                            </div>
-                                        </Space>
-                                    </a>
+                                    <div className="text-white flex items-center justify-center mr-10 ">
+                                        <MdOutlineAccountCircle />
+                                        &nbsp; {username}
+                                    </div>
+
                                 </Dropdown>
                             </div>
                         ) : (

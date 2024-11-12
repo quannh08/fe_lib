@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 
 import { getAuthorById, getProductList } from '../../services/bookService';
 import GoBack from '../../component/GoBack';
@@ -49,7 +50,7 @@ function Author() {
             <div className="px-8 ">
                 <GoBack />
             </div>
-            <div className="w-full h-full p-8 flex mb-12">
+            <div className="w-full h-full p-8 flex ">
                 <div className="w-full h-[500px] p-8 flex  justify-start mb-12">
                     <div className="w-[400px] h-[500px] flex border-2 border-gray-400 shadow-md shadow-slate-400">
                         <img className="w-full aspect-[4/3] object-cover" src={author.profile_picture} alt={author.name} />
@@ -91,21 +92,30 @@ function Author() {
 
                     {/* Component phân trang */}
                     <div className="flex items-center justify-center">
-                        <ReactPaginate
-                            previousLabel={'previous'}
-                            nextLabel={'next'}
-                            breakLabel={'...'}
-                            pageCount={Math.ceil(listBookOfAuthor.length / itemsPerPage)}
-                            marginPagesDisplayed={2}
-                            pageRangeDisplayed={2}
-                            onPageChange={handlePageClick}
-                            containerClassName={'flex gap-3'}
-                            previousClassName={'px-3 py-2 bg-gray-300 rounded-lg'}
-                            nextClassName={'px-3 py-2 bg-gray-300 rounded-lg'}
-                            pageClassName={'px-3 py-2 bg-gray-200 rounded-lg'}
-                            activeClassName={'!bg-cyan-800 text-gray-200'}
-                        />
-                    </div>
+                <ReactPaginate
+                    className="flex items-center justify-center gap-2"
+                    previousLabel={
+                        <span className="flex justify-center items-center">
+                            <FaAngleDoubleLeft />
+                        </span>
+                    }
+                    nextLabel={
+                        <span className="flex justify-center items-center">
+                            <FaAngleDoubleRight />
+                        </span>
+                    }
+                    breakLabel={'...'}
+                    pageCount={Math.ceil(listBookOfAuthor.length / itemsPerPage)}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={0}
+                    onPageChange={handlePageClick}
+                    containerClassName={'flex gap-3'}
+                    previousClassName={'px-3 py-2 bg-gray-300 rounded-lg'}
+                    nextClassName={'px-3 py-2 bg-gray-300 rounded-lg'}
+                    pageClassName={'px-3 py-2 bg-gray-200 rounded-lg'}
+                    activeClassName={'!bg-cyan-800 text-gray-200'}
+                />
+            </div>
                 </div>
             </div>
         </div>

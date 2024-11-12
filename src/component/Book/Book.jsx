@@ -51,14 +51,10 @@ function Book(props) {
                 <Link to={'/books/' + item.id}>
                     <h2 className="text-lg font-bold">{item.title}</h2>
                 </Link>
-                <h4 className="font-semibold text-base">
-                    Thể Loại: {item.category}
-                </h4>
-                <h4 className="font-semibold text-base">
-                    Tác Giả: {name_author}
-                </h4>
-                
+                <h4 className="font-semibold text-base">Thể Loại: {item.category}</h4>
+                <h4 className="font-semibold text-base">Tác Giả: {name_author}</h4>
             </div>
+
             {/* <div className="w-full h-full flex justify-center items-center bottom-0">
                 <Button
                     type="primary"

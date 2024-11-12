@@ -1,11 +1,13 @@
-import ListBook from "./ListBook";
+import SimpleSlide from '../../component/slide/SimpleSlide';
+import ListBook from './ListBook';
 
 function Home() {
-    return ( 
+    return (
         <div className="w-full h-full px-6 my-12">
-            <ListBook/>
+            <SimpleSlide />
+            <ListBook />
         </div>
-     );
+    );
 }
 
 export default Home;

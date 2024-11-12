@@ -1,4 +1,4 @@
-import { del, get, getStore, post } from '../utils/request';
+import { del, get, getStore, post, patch } from '../utils/request';
 
 export const getProductList = async () => {
     const result = await get('books/');
@@ -32,6 +32,11 @@ export const getBookStore = async () => {
     const result = await getStore('read-history/');
     return result;
 };
+
+export const patchReadCount = async(id)=>{
+    const result = await patch(`books/${id}/increase-read-count/`);
+    return result;
+}
 
 // export const delBookStore = async (id) => {
 //     const result = await del(`store/${id}`);

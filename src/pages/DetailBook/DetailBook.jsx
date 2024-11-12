@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getBookDetail } from '../../services/bookService';
+import { getBookDetail, patchReadCount } from '../../services/bookService';
 import { createBookStore, getAuthor, getBookStore } from '../../services/bookService';
 import GoBack from '../../component/GoBack';
 import { getCookie } from '../../helper/cookie';
@@ -43,8 +43,14 @@ function DetailBook() {
     //     fetchApi();
     // }, []);
 
+    const incCount = async (id) => {
+        const result = await patchReadCount(id);
+    };
+
     const handleClick = () => {
         if (token) {
+            incCount(content.id);
+            console.log(content.read_count);
             navigate(`/viewbook/${content.id}`);
         } else {
             navigate('/login');
@@ -54,6 +60,10 @@ function DetailBook() {
     const handleClickAuthor = () => {
         navigate(`/author/${content.authors}`);
     };
+
+    const handleClickCategory=()=>{
+        navigate(`/category/${content.category}`)
+    }
 
     const handleAddToStore = async () => {
         if (data.some((itemCart) => itemCart.id === content.id)) {
@@ -80,7 +90,7 @@ function DetailBook() {
                         <div className="flex flex-col gap-3">
                             <h1 className="font-bold text-3xl">{content.title}</h1>
                             <h3 className="text-base font-medium">
-                                <span className="font-bold text-xl">
+                                <span className="font-bold text-xl ">
                                     Tác Giả:
                                     <span className="cursor-pointer hover:text-zinc-600" onClick={handleClickAuthor}>
                                         &nbsp; {name_author}
@@ -88,7 +98,11 @@ function DetailBook() {
                                 </span>
                             </h3>
                             <h3 className="text-base font-medium">
-                                <span className="font-bold text-xl">Thể Loại:</span>&nbsp; {content.category}
+                                <span className="font-bold text-xl">Thể Loại:
+                                    <span className="cursor-pointer hover:text-zinc-600" onClick={handleClickCategory}>
+                                            &nbsp; {content.category}
+                                    </span>
+                                </span>
                             </h3>
                             <p className="font-normal text-base">
                                 <span className="font-bold">Tóm tắt nội dung:</span>&nbsp; {content.description}
