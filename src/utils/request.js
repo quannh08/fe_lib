@@ -10,27 +10,27 @@ export const get = async (path) => {
 };
 //fake api login
 export const getUser = async (options) => {
-    const response = await axios.post(API_DOMAIN+'user/login/', options);
+    const response = await axios.post(API_DOMAIN + 'user/login/', options);
     const result = response.data;
     return result;
 };
 
 export const registerUser = async (options) => {
-    const response = await axios.post(API_DOMAIN+'user/register/', options);
+    const response = await axios.post(API_DOMAIN + 'user/register/', options);
     console.log(response);
     const result = response.data;
     return result;
 };
 
 export const getStore = async (path) => {
-    // Lấy token từ localStorage
     const token = getCookie('token');
     console.log(token);
+    console.log(API_DOMAIN + path);
     // Gửi request với header Authorization chứa token
     const response = await axios.get(API_DOMAIN + path, {
         headers: {
-            'Authorization': `Bearer ${token}`
-        }
+            Authorization: `Bearer: ${token}`,
+        },
     });
 
     console.log(response);
@@ -61,6 +61,7 @@ export const oldPatch = async (path, options) => {
     const result = await response.json();
     return result;
 };
+
 export const patch = async (path) => {
     const response = await axios.patch(API_DOMAIN + path);
     const result = await response.data;
