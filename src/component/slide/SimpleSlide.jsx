@@ -15,7 +15,7 @@ function SimpleSlide() {
         infinite: true,
         slidesToShow: 4,
         slidesToScroll: 1,
-        centerPadding: '50px',
+        centerPadding: '60px',
         //autoplay: true,
         speed: 500,
         //autoplaySpeed: 3000,
@@ -31,7 +31,6 @@ function SimpleSlide() {
     }, []);
 
     const mostReaded = data.sort((a, b) => b.read_count - a.read_count).slice(0, 6);
-    console.log(mostReaded);
 
     return (
         <div className="px-6 my-7">

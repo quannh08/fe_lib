@@ -23,22 +23,31 @@ export const registerUser = async (options) => {
 };
 
 export const getStore = async (path) => {
-    const token = getCookie('token');
-    console.log(token);
-    console.log(API_DOMAIN + path);
-    // Gửi request với header Authorization chứa token
-    const response = await axios.get(API_DOMAIN + path, {
-        headers: {
-            Authorization: `Bearer: ${token}`,
-        },
-    });
-
-    console.log(response);
-    return response.data;
+    try {
+        const token = getCookie('token');
+        const response = await axios.get(API_DOMAIN + path, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error in getStore:', error);
+    }
 };
 
 export const post = async (path, options) => {
-    const response = await axios.post(API_DOMAIN + path, options);
+    const token = getCookie('token');
+    const response = await axios.post(
+        API_DOMAIN + path, // Thay URL_API_ENDPOINT bằng URL thực tế của API
+        options,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`, // Đảm bảo `token` là JWT token hợp lệ
+                'Content-Type': 'application/json',
+            },
+        },
+    );
     const result = await response.data;
     return result;
 };

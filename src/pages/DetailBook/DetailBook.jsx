@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getBookDetail, patchReadCount } from '../../services/bookService';
+import { getBookDetail, patchReadCount, postReadHistory } from '../../services/bookService';
 import { createBookStore, getAuthor, getBookStore } from '../../services/bookService';
 import GoBack from '../../component/GoBack';
 import { getCookie } from '../../helper/cookie';
@@ -11,7 +11,7 @@ function DetailBook() {
     const navigate = useNavigate();
     const params = useParams();
     const [content, setContent] = useState({});
-    const [data, setData] = useState([]);
+    // const [data, setData] = useState([]);
     const [listAuthor, setListAuthor] = useState([]);
     useEffect(() => {
         const fetchApi = async (id) => {
@@ -35,14 +35,6 @@ function DetailBook() {
         }
     });
 
-    // useEffect(() => {
-    //     const fetchApi = async () => {
-    //         const result = await getBookStore();
-    //         setData(result);
-    //     };
-    //     fetchApi();
-    // }, []);
-
     const incCount = async (id) => {
         const result = await patchReadCount(id);
     };
@@ -52,6 +44,7 @@ function DetailBook() {
             incCount(content.id);
             console.log(content.read_count);
             navigate(`/viewbook/${content.id}`);
+            handleAddToStore(params.id);
         } else {
             navigate('/login');
         }
@@ -61,19 +54,12 @@ function DetailBook() {
         navigate(`/author/${content.authors}`);
     };
 
-    const handleClickCategory=()=>{
-        navigate(`/category/${content.category}`)
-    }
+    const handleClickCategory = () => {
+        navigate(`/category/${content.category}`);
+    };
 
-    const handleAddToStore = async () => {
-        if (data.some((itemCart) => itemCart.id === content.id)) {
-            alert('It in store');
-        } else {
-            const result = await createBookStore(content);
-            if (result) {
-                alert('success!');
-            }
-        }
+    const handleAddToStore = async (id) => {
+        const result = await postReadHistory({ id: id });
     };
 
     return (
@@ -98,9 +84,10 @@ function DetailBook() {
                                 </span>
                             </h3>
                             <h3 className="text-base font-medium">
-                                <span className="font-bold text-xl">Thể Loại:
+                                <span className="font-bold text-xl">
+                                    Thể Loại:
                                     <span className="cursor-pointer hover:text-zinc-600" onClick={handleClickCategory}>
-                                            &nbsp; {content.category}
+                                        &nbsp; {content.category}
                                     </span>
                                 </span>
                             </h3>

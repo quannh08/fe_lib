@@ -4,22 +4,18 @@ import BookItemList from './BookItemList';
 import { useState, useEffect } from 'react';
 import { getBookStore } from '../../services/bookService';
 import GoBack from '../../component/GoBack';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 function BookStore() {
     const [data, setData] = useState([]);
-    const reload = useSelector((state) => state.delStore);
-    console.log(reload);
+    // const reload = useSelector((state) => state.delStore);
     useEffect(() => {
         const fetchApi = async () => {
             const result = await getBookStore();
-            setData(result);
+            setData(result.read_books);
         };
         fetchApi();
     }, []);
-
-    // const handleDeleteAll=()=>{
-    //     dispatch(deleteAll())
-    // }
+    console.log(data);
 
     return (
         <div>
