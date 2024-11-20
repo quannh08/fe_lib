@@ -24,7 +24,7 @@ function BookStore() {
             </div>
             <div className="m-8 min-h-full">
                 <div className="flex w-full justify-between ">
-                    <h2 className="w-full font-bold text-xl ml-auto">Sách đang đọc</h2>
+                    <h2 className="w-full font-bold text-xl ml-auto">Sách đã đọc</h2>
                     {/* <button onClick={handleDeleteAll} className="bg-cyan-800 w-20 h-9 text-white rounded active:bg-cyan-600"> delete All</button> */}
                 </div>
                 <div>

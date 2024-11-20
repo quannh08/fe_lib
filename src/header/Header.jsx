@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Button, Flex } from 'antd';
 import { MdOutlineAccountCircle } from 'react-icons/md';
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut } from 'react-icons/fi';
 import { Dropdown, Space } from 'antd';
 
 import SearchBook from './Search';
@@ -17,15 +17,19 @@ function Header() {
 
     const navLinkActive = (e) => {
         return e.isActive
-            ? 'bg-cyan-800 h-full flex justify-center items-center px-2'
-            : 'h-full flex justify-center items-center px-2 hover:bg-cyan-800';
+            ? 'bg-cyan-800 h-full flex justify-center items-center px-2 w-full'
+            : 'h-full flex justify-center items-center px-2 hover:bg-cyan-800 w-full';
     };
 
     const items = [
         {
-            label: <Link to="/logout"><span className='flex items-center justify-center '>Đăng xuất &nbsp;</span></Link>,
+            label: (
+                <Link to="/logout">
+                    <span className="flex items-center justify-center ">Đăng xuất &nbsp;</span>
+                </Link>
+            ),
             key: 'logout',
-            icon:<FiLogOut />
+            icon: <FiLogOut />,
         },
     ];
 
@@ -54,7 +58,7 @@ function Header() {
                             <li className="flex justify-center items-center h-full">
                                 <NavLink className={navLinkActive} to={'/bookstore'}>
                                     {' '}
-                                    Đang đọc{' '}
+                                    Lịch sử{' '}
                                 </NavLink>
                             </li>
                         )}
@@ -77,7 +81,6 @@ function Header() {
                                         <MdOutlineAccountCircle />
                                         &nbsp; {username}
                                     </div>
-
                                 </Dropdown>
                             </div>
                         ) : (
