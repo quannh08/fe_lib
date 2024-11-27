@@ -34,7 +34,7 @@ function SimpleSlide() {
 
     return (
         <div className="px-6 my-7">
-            <h2 className="text-2xl font-bold pb-4"> Sách được đọc nhiều nhất</h2>
+            <h2 className="text-2xl font-bold pb-4"> Sách được truy cập nhiều nhất</h2>
             <div>
                 <Slider {...settings} className="w-full">
                     {mostReaded.map((item) => {
